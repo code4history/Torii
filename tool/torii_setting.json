@@ -1,0 +1,17 @@
+{
+  "xlsx": "../torii_test1.xlsx",
+  "geojsons": {
+    "pois": {
+      "geometry": true
+    },
+    "images": {
+      "image": true
+    },
+    "refs": {
+    },
+    "books": {
+    }
+  },
+  "geojsons_path": "../",
+  "out_geojson": "../torii_test.geojson"
+}
