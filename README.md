@@ -28,18 +28,23 @@ Windows 64ビット、Mac (Intel, M1)の実行ファイルを配布しており�
 
 ### Windows用実行ファイル
 
-* [qgis2Xlsx_win.exe](https://github.com/code4history/Torii/releases/download/v1.0.0/qgis2Xlsx_win.exe) (GeoJSON => Excel方向変換)
-* [xlsx2Qgis_win.exe](https://github.com/code4history/Torii/releases/download/v1.0.0/xlsx2Qgis_win.exe) (Excel => GeoJSON方向変換)
+* [torii_win_1_0_0.zip](https://github.com/code4history/Torii/releases/download/v1.0.0/torii_win_1_0_0.zip)  
+内容物:
+  * qgis2Xlsx_win.exe (GeoJSON => Excel方向変換)
+  * xlsx2Qgis_win.exe (Excel => GeoJSON方向変換)
 
 ### Intel Mac用実行ファイル
-
-* [qgis2Xlsx_mac](https://github.com/code4history/Torii/releases/download/v1.0.0/qgis2Xlsx_mac) (GeoJSON => Excel方向変換)
-* [xlsx2Qgis_mac](https://github.com/code4history/Torii/releases/download/v1.0.0/xlsx2Qgis_mac) (Excel => GeoJSON方向変換)
+* [torii_mac_1_0_0.zip](https://github.com/code4history/Torii/releases/download/v1.0.0/torii_mac_1_0_0.zip)  
+内容物:
+  * qgis2Xlsx_mac (GeoJSON => Excel方向変換)
+  * xlsx2Qgis_mac (Excel => GeoJSON方向変換)
 
 ### M1 Mac用実行ファイル
 
-* [qgis2Xlsx_macm1](https://github.com/code4history/Torii/releases/download/v1.0.0/qgis2Xlsx_macm1) (GeoJSON => Excel方向変換)
-* [xlsx2Qgis_macm1](https://github.com/code4history/Torii/releases/download/v1.0.0/xlsx2Qgis_macm1) (Excel => GeoJSON方向変換)
+* [torii_macm1_1_0_0.zip](https://github.com/code4history/Torii/releases/download/v1.0.0/torii_macm1_1_0_0.zip)  
+内容物:
+  * qgis2Xlsx_macm1 (GeoJSON => Excel方向変換)
+  * xlsx2Qgis_macm1 (Excel => GeoJSON方向変換)
 
 ## 利用方法
 
