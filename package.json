@@ -4,6 +4,7 @@
   "description": "文化財オープンデータ管理コマンドラインツール「鳥居」",
   "main": "src/torii.js",
   "dependencies": {
+    "archiver": "^5.3.0",
     "argv": "0.0.2",
     "exif": "^0.6.0",
     "fs-extra": "^10.0.0",
@@ -17,13 +18,13 @@
     "x2q": "node src/xlsx2Qgis.js -c './test/test.json'",
     "build_x2q_macm1": "pkg src/xlsx2Qgis.js --target=node14-darwin-arm64 --output=dist/xlsx2Qgis_macm1",
     "build_q2x_macm1": "pkg src/qgis2Xlsx.js --target=node14-darwin-arm64 --output=dist/qgis2Xlsx_macm1",
-    "build_macm1": "npm run build_x2q_macm1 && npm run build_q2x_macm1",
+    "build_macm1": "npm run build_x2q_macm1 && npm run build_q2x_macm1 && node bin/zipper.js -p \"macm1\"",
     "build_x2q_mac": "pkg src/xlsx2Qgis.js --target=node14-darwin-x64 --output=dist/xlsx2Qgis_mac",
     "build_q2x_mac": "pkg src/qgis2Xlsx.js --target=node14-darwin-x64 --output=dist/qgis2Xlsx_mac",
-    "build_mac": "npm run build_x2q_mac && npm run build_q2x_mac",
+    "build_mac": "npm run build_x2q_mac && npm run build_q2x_mac && node bin/zipper.js -p \"mac\"",
     "build_x2q_win": "pkg src/xlsx2Qgis.js --target=node14-win-x64 --output=dist/xlsx2Qgis_win.exe",
     "build_q2x_win": "pkg src/qgis2Xlsx.js --target=node14-win-x64 --output=dist/qgis2Xlsx_win.exe",
-    "build_win": "npm run build_x2q_win && npm run build_q2x_win"
+    "build_win": "npm run build_x2q_win && npm run build_q2x_win && node bin/zipper.js -p \"win\""
   },
   "repository": {
     "type": "git",

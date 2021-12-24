@@ -32,6 +32,12 @@ const args = argv.option([
     "type": "string",
     "description": "設定ファイルを指定します",
     "example": "'script --config=\"value\"' or 'script -c \"value\"'"
+  },
+  {
+    "name": "version",
+    "short": "v",
+    "type": "boolean",
+    "description": "プログラムのバージョンを取得します"
   }
 ]).run();
 
@@ -46,6 +52,10 @@ const settings = fs.readJsonSync(config_file);
 const setting_version = settings.version || '1.0.0';
 if (compareVersion(setting_version) < 0) {
   console.log(`新しい設定ファイル形式(バージョン${setting_version})のため、本プログラム(バージョン${version})では処理できません\n新しいプログラムに置き換えてください。`);
+  process.exit();
+}
+if (args.options.version) {
+  console.log(version);
   process.exit();
 }
 const file_path = path.resolve(path.dirname(config_file), settings.base_folder || '../');
