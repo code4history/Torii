@@ -43,7 +43,7 @@ const cwd = process.cwd();
 const script_path = path.dirname(process.argv[1].match(/^(?:C:)?[\\\/]snapshot[\\\/]/) ? process.argv[0] : process.argv[1]);
 const config_file = args.options.config ? path.resolve(cwd, args.options.config) : path.resolve(script_path, './torii.json');
 const settings = fs.readJsonSync(config_file);
-const setting_version = settings.version || '1.0';
+const setting_version = settings.version || '1.0.0';
 if (compareVersion(setting_version) < 0) {
   console.log(`新しい設定ファイル形式(バージョン${setting_version})のため、本プログラム(バージョン${version})では処理できません\n新しいプログラムに置き換えてください。`);
   process.exit();
