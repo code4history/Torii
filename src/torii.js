@@ -34,6 +34,13 @@ const args = argv.option([
     "example": "'script --config=\"value\"' or 'script -c \"value\"'"
   },
   {
+    "name": "local_config",
+    "short": "l",
+    "type": "string",
+    "description": "各PC環境別の設定ファイルを指定します",
+    "example": "'script --local_config=\"value\"' or 'script -l \"value\"'"
+  },
+  {
     "name": "version",
     "short": "v",
     "type": "boolean",
@@ -42,14 +49,20 @@ const args = argv.option([
 ]).run();
 
 const version = require('../package.json').version;
-const shooter = args.options.shooter || 'Shooter not reported - must update';
-const gdate = args.options.date;
-const ndate = (new Date(Date.now() + 9 * 60 * 60 * 1000)).toISOString().replace(/\.\d+Z$/, "");
 const cwd = process.cwd();
 const script_path = path.dirname(process.argv[1].match(/^(?:C:)?[\\\/]snapshot[\\\/]/) ? process.argv[0] : process.argv[1]);
 const config_file = args.options.config ? path.resolve(cwd, args.options.config) : path.resolve(script_path, './torii.json');
 const settings = fs.readJsonSync(config_file);
 const setting_version = settings.version || '1.0.0';
+let config_local;
+try {
+  config_local = args.options.local_config ? path.resolve(cwd, args.options.local_config) : path.resolve(script_path, './torii_local.json');
+} catch(e) {
+  config_local = {};
+}
+const shooter = args.options.shooter || config_local.shooter || 'Shooter not reported - must update';
+const gdate = args.options.date || config_local.date;
+const ndate = (new Date(Date.now() + 9 * 60 * 60 * 1000)).toISOString().replace(/\.\d+Z$/, "");
 if (compareVersion(setting_version) < 0) {
   console.log(`新しい設定ファイル形式(バージョン${setting_version})のため、本プログラム(バージョン${version})では処理できません\n新しいプログラムに置き換えてください。`);
   process.exit();
