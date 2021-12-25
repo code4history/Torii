@@ -34,7 +34,7 @@ const zipArchive = async () => {
     const filename = `${base}_${pform}${ext}`;
     const filepath = path.join(targetDir, filename);
     if (pform !== "win") {
-      execSync(`./node_modules/.bin/node-codesign ${filepath} "${identity}"`);
+      //execSync(`./node_modules/.bin/node-codesign ${filepath} "${identity}"`);
     }
     archive.file(filepath, { name: filename });
   });
