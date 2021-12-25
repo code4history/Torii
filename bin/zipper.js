@@ -30,12 +30,13 @@ const zipArchive = async () => {
 
   archive.pipe(output);
 
-  ['qgis2Xlsx', 'xlsx2Qgis'].forEach(base => {
-    const filename = path.join(targetDir, `${base}_${pform}${ext}`);
+  ['qgis2Xlsx', 'xlsx2Qgis'].map(base => {
+    const filename = `${base}_${pform}${ext}`;
+    const filepath = path.join(targetDir, filename);
     if (pform !== "win") {
-      execSync(`./node_modules/.bin/node-codesign ${filename} "${identity}"`);
+      execSync(`./node_modules/.bin/node-codesign ${filepath} "${identity}"`);
     }
-    archive.append(fs.createReadStream(filename), { name: filename });
+    archive.file(filepath, { name: filename });
   });
 
   await archive.finalize();
