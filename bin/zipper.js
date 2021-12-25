@@ -3,6 +3,9 @@ const path = require('path');
 const archiver = require('archiver');
 const argv = require('argv');
 const version = require('../package.json').version.replace(/\./g, "_");
+const { execSync } = require('child_process');
+require('dotenv').config();
+const identity = process.env.IDENTITY;
 
 const args = argv.option([
   {
@@ -28,8 +31,11 @@ const zipArchive = async () => {
   archive.pipe(output);
 
   ['qgis2Xlsx', 'xlsx2Qgis'].forEach(base => {
-    const filename = `${base}_${pform}${ext}`;
-    archive.append(fs.createReadStream(path.join(targetDir, filename)), { name: filename });
+    const filename = path.join(targetDir, `${base}_${pform}${ext}`);
+    if (pform !== "win") {
+      execSync(`./node_modules/.bin/node-codesign ${filename} "${identity}"`);
+    }
+    archive.append(fs.createReadStream(filename), { name: filename });
   });
 
   await archive.finalize();
