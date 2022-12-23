@@ -1,0 +1,13 @@
+{
+  "name": "test",
+  "bin": "src/test.js",
+  "private": true,
+  "pkg": {
+    "assets": [
+      "package.json",
+      "node_modules/flatgeobuf/**/*"
+    ],
+    "outputPath": "dist",
+    "targets": ["node16-win-x64"]
+  }
+}

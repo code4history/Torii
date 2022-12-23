@@ -6,7 +6,9 @@
   "dependencies": {
     "archiver": "^5.3.1",
     "argv": "0.0.2",
+    "esm": "^3.2.25",
     "exif": "^0.6.0",
+    "file-url": "^4.0.0",
     "flatgeobuf": "^3.24.1",
     "fs-extra": "^11.1.0",
     "jimp": "^0.16.2",
@@ -25,7 +27,10 @@
     "build_mac": "npm run build_x2q_mac && npm run build_q2x_mac && node bin/zipper.js -p \"mac\"",
     "build_x2q_win": "pkg src/xlsx2Qgis.js --target=node14-win-x64 --output=dist/xlsx2Qgis_win.exe",
     "build_q2x_win": "pkg src/qgis2Xlsx.js --target=node14-win-x64 --output=dist/qgis2Xlsx_win.exe",
-    "build_win": "npm run build_x2q_win && npm run build_q2x_win && node bin/zipper.js -p \"win\""
+    "build_win": "npm run build_x2q_win && npm run build_q2x_win && node bin/zipper.js -p \"win\"",
+    "build_test": "pkg src/test.js --target=node16-win-x64 --output=dist/test.exe",
+    "build_test_bak": "pkg src/test.js --target=node16-win-x64 --output=dist/test.exe --debug --public-packages \"*\" --public --no-bytecode",
+    "build_test_conf": "pkg --public --no-bytecode --debug pkg.config.json"
   },
   "repository": {
     "type": "git",
@@ -38,7 +43,9 @@
   },
   "homepage": "https://github.com/code4history/Torii#readme",
   "pkg": {
-    "assets": "./package.json"
-  },
-  "devDependencies": {}
+    "assets": [
+      "package.json",
+      "node_modules/flatgeobuf/**/*"
+    ]
+  }
 }
