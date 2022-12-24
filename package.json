@@ -25,8 +25,8 @@
     "build_x2q_mac": "pkg src/xlsx2Qgis.js --target=node16-darwin-x64 --output=dist/xlsx2Qgis_mac",
     "build_q2x_mac": "pkg src/qgis2Xlsx.js --target=node16-darwin-x64 --output=dist/qgis2Xlsx_mac",
     "build_mac": "npm run build_x2q_mac && npm run build_q2x_mac && node bin/zipper.js -p \"mac\"",
-    "build_x2q_win": "pkg src/xlsx2Qgis.js --debug --target=node16-win-x64 --output=dist/xlsx2Qgis_win.exe",
-    "build_q2x_win": "pkg src/qgis2Xlsx.js --debug --target=node16-win-x64 --output=dist/qgis2Xlsx_win.exe",
+    "build_x2q_win": "pkg src/xlsx2Qgis.js --target=node16-win-x64 --output=dist/xlsx2Qgis_win.exe",
+    "build_q2x_win": "pkg src/qgis2Xlsx.js --target=node16-win-x64 --output=dist/qgis2Xlsx_win.exe",
     "build_win": "npm run build_x2q_win && npm run build_q2x_win && node bin/zipper.js -p \"win\""
   },
   "repository": {
