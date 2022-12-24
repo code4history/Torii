@@ -25,24 +25,24 @@ Toriiは位置情報に紐づく文化財オープンデータを効率よく管
 
 ## 提供物
 
-Windows 64ビット、Mac (Intel, M1)の実行ファイルを配布しております(現在 1.0.0)。  
+Windows 64ビット、Mac (Intel, M1)の実行ファイルを配布しております(現在 1.1.0)。  
 
 ### Windows用実行ファイル
 
-* [torii_win_1_0_0.zip](https://github.com/code4history/Torii/releases/download/v1.0.0/torii_win_1_0_0.zip)  
+* [torii_win_1_1_0.zip](https://github.com/code4history/Torii/releases/download/v1.1.0/torii_win_1_1_0.zip)  
 内容物:
   * qgis2Xlsx_win.exe (GeoJSON => Excel方向変換)
   * xlsx2Qgis_win.exe (Excel => GeoJSON方向変換)
 
 ### Intel Mac用実行ファイル
-* [torii_mac_1_0_0.zip](https://github.com/code4history/Torii/releases/download/v1.0.0/torii_mac_1_0_0.zip)  
+* [torii_mac_1_1_0.zip](https://github.com/code4history/Torii/releases/download/v1.1.0/torii_mac_1_1_0.zip)  
 内容物:
   * qgis2Xlsx_mac (GeoJSON => Excel方向変換)
   * xlsx2Qgis_mac (Excel => GeoJSON方向変換)
 
 ### M1 Mac用実行ファイル
 
-* [torii_macm1_1_0_0.zip](https://github.com/code4history/Torii/releases/download/v1.0.0/torii_macm1_1_0_0.zip)  
+* [torii_macm1_1_1_0.zip](https://github.com/code4history/Torii/releases/download/v1.1.0/torii_macm1_1_1_0.zip)  
 内容物:
   * qgis2Xlsx_macm1 (GeoJSON => Excel方向変換)
   * xlsx2Qgis_macm1 (Excel => GeoJSON方向変換)
