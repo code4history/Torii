@@ -4,6 +4,7 @@ const fs = require('fs-extra');
 const argv = require('argv');
 const Jimp = require('jimp');
 const path = require('path');
+const { serialize } = require("./flatgeobuf-geojson.min.js");
 
 const args = argv.option([
   {
@@ -108,7 +109,6 @@ const original_attr_key = image_table_key ? tables[image_table_key].path || "pat
 const thumbnails = image_table_key ? tables[image_table_key].thumbnails : [];
 
 module.exports = async function (fromXlsx) {
-  const { geojson } = await import("flatgeobuf");
   // Read from xlsx
   const book = await new Promise((res) => {
     try {
@@ -409,7 +409,7 @@ module.exports = async function (fromXlsx) {
     fs.writeFileSync(geojson_file, outGeoJson);
   }
   if (out_mrg_fgb) {
-    const flatgeobuf = geojson.serialize(JSON.parse(outGeoJson));
+    const flatgeobuf = serialize(JSON.parse(outGeoJson));
     fs.writeFileSync(fgb_file, flatgeobuf);
   }
 };
