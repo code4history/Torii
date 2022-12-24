@@ -1,0 +1,11 @@
+{
+  "name": "test",
+  "bin": "src/test.js",
+  "private": true,
+  "pkg": {
+    "assets": [
+    ],
+    "outputPath": "dist",
+    "targets": ["node16-win-x64"]
+  }
+}

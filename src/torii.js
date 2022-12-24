@@ -4,12 +4,7 @@ const fs = require('fs-extra');
 const argv = require('argv');
 const Jimp = require('jimp');
 const path = require('path');
-
-const geojson_template = {
-  type: "FeatureCollection",
-  crs: { type: "name", properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-  features: []
-};
+const { serialize } = require("./flatgeobuf-geojson.min.js");
 
 const args = argv.option([
   {
@@ -45,14 +40,26 @@ const args = argv.option([
     "short": "v",
     "type": "boolean",
     "description": "プログラムのバージョンを取得します"
-  }
+  },
+  {
+    "name": "fgb",
+    "short": "f",
+    "type": "boolean",
+    "description": "マージGeoJSONの代わりにFlatGeoBufを出力します"
+  },
+  {
+    "name": "both",
+    "short": "b",
+    "type": "boolean",
+    "description": "マージGeoJSONとFlatGeoBufを両方出力します"
+  },
 ]).run();
 
 const version = require('../package.json').version;
 const cwd = process.cwd();
 const script_path = path.dirname(process.argv[1].match(/^(?:C:)?[\\\/]snapshot[\\\/]/) ? process.argv[0] : process.argv[1]);
 const config_file = args.options.config ? path.resolve(cwd, args.options.config) : path.resolve(script_path, './torii.json');
-const settings = fs.readJsonSync(config_file);
+let settings = fs.readJsonSync(config_file);
 const setting_version = settings.version || '1.0.0';
 let setting_local;
 try {
@@ -61,8 +68,11 @@ try {
 } catch(e) {
   setting_local = {};
 }
-const shooter = args.options.shooter || setting_local.shooter || 'Shooter not reported - must update';
-const gdate = args.options.date || setting_local.date;
+settings = Object.assign(settings, setting_local);
+const out_mrg_gj = (args.options.both || settings.both) || !(args.options.fgb || settings.fgb);
+const out_mrg_fgb = args.options.both || settings.both || args.options.fgb || settings.fgb || false;
+const shooter = args.options.shooter || settings.shooter || 'Shooter not reported - must update';
+const gdate = args.options.date || settings.date;
 const ndate = (new Date(Date.now() + 9 * 60 * 60 * 1000)).toISOString().replace(/\.\d+Z$/, "");
 if (compareVersion(setting_version) < 0) {
   console.log(`新しい設定ファイル形式(バージョン${setting_version})のため、本プログラム(バージョン${version})では処理できません\n新しいプログラムに置き換えてください。`);
@@ -75,6 +85,7 @@ if (args.options.version) {
 const file_path = path.resolve(path.dirname(config_file), settings.base_folder || '../');
 const xlsx_file = path.resolve(file_path, settings.xlsx_file || 'torii.xlsx');
 const geojson_file = path.resolve(file_path, settings.geojson_file || 'torii.geojson');
+const fgb_file = path.resolve(file_path, settings.fgb_file || 'torii.fgb');
 const tables = settings.tables;
 const table_keys = Object.keys(tables);
 const mid_json = {};
@@ -393,7 +404,14 @@ module.exports = async function (fromXlsx) {
     });
   });
 
-  fs.writeFileSync(geojson_file, savingGeoJson(gj[poi_table_key]));
+  const outGeoJson = savingGeoJson(gj[poi_table_key]);
+  if (out_mrg_gj) {
+    fs.writeFileSync(geojson_file, outGeoJson);
+  }
+  if (out_mrg_fgb) {
+    const flatgeobuf = serialize(JSON.parse(outGeoJson));
+    fs.writeFileSync(fgb_file, flatgeobuf);
+  }
 };
 
 function ws2Json(ws, types) {

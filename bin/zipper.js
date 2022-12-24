@@ -3,9 +3,9 @@ const path = require('path');
 const archiver = require('archiver');
 const argv = require('argv');
 const version = require('../package.json').version.replace(/\./g, "_");
-const { execSync } = require('child_process');
-require('dotenv').config();
-const identity = process.env.IDENTITY;
+// const { execSync } = require('child_process');
+// require('dotenv').config();
+// const identity = process.env.IDENTITY;
 
 const args = argv.option([
   {
@@ -33,9 +33,9 @@ const zipArchive = async () => {
   ['qgis2Xlsx', 'xlsx2Qgis'].map(base => {
     const filename = `${base}_${pform}${ext}`;
     const filepath = path.join(targetDir, filename);
-    if (pform !== "win") {
-      //execSync(`./node_modules/.bin/node-codesign ${filepath} "${identity}"`);
-    }
+    // if (pform !== "win") {
+    //   //execSync(`./node_modules/.bin/node-codesign ${filepath} "${identity}"`);
+    // }
     archive.file(filepath, { name: filename });
   });
 

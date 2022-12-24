@@ -3,6 +3,8 @@
   "base_folder": "./",
   "xlsx_file": "test.xlsx",
   "geojson_file": "test.geojson",
+  "fgb_file": "test.fgb",
+  "both": true,
   "tables": {
     "pois": {
       "attrs": [
